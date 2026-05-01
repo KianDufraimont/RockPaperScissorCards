@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public class CardLabel extends JLabel{
-    private Card card;
+    private final Card card;
 
     public CardLabel(Type type, boolean hidden){
         super();

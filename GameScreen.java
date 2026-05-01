@@ -16,6 +16,7 @@ public class GameScreen extends JPanel{
 
     public GameScreen(){
         super();
+
         this.setLayout(new GridLayout(2,3,10,10));
         this.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         
@@ -34,11 +35,13 @@ public class GameScreen extends JPanel{
             cardButton.getButton().addActionListener((ActionEvent e) -> {
                 enemy.showCard();
                 enemy.updateColor(cardButton.getCard());
-                cardButton.getCardLabel().updateColor(enemy.getCard());
+                cardButton.updateColor(enemy.getCard());
                 for (int j = 0; j < 3; j++){
                     buttons[j].setEnabled(false);
                 }
-                Main.Reset();
+                boolean win = cardButton.getCard().isWin(enemy.getCard());
+                boolean draw = cardButton.getCard().isDraw(enemy.getCard());
+                Main.Reset(win, draw);
             });
 
             this.add(cardButton);

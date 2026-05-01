@@ -22,6 +22,10 @@ public class CardButton extends JPanel{
         this.add(button, BorderLayout.PAGE_END);
     }
 
+    public void updateColor(Card other){
+        label.updateColor(other);
+    }
+
     public JButton getButton(){
         return button;
     }
