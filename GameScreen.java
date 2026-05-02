@@ -1,7 +1,7 @@
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.Random;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,8 +18,7 @@ public class GameScreen extends JPanel{
         super();
 
         this.setLayout(new GridLayout(2,3,10,10));
-        this.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        
+        this.setBackground(new Color(255, 253, 208));
         //randomly picks a type for enemy card
         CardLabel enemy = new CardLabel(types[rand.nextInt(3)], true);
 
