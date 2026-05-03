@@ -25,11 +25,11 @@ public class Main {
         reset = new JButton("Reset");
         reset.setEnabled(false);
         reset.addActionListener((ActionEvent e) -> {
-            reset.setEnabled(false);
             formatPanel.remove(((BorderLayout)formatPanel.getLayout()).getLayoutComponent(BorderLayout.CENTER));
             formatPanel.add(new GameScreen(), BorderLayout.CENTER);
             frame.revalidate();
             frame.repaint();
+            reset.setEnabled(false);
         });
         
         formatPanel.add(new GameScreen(), BorderLayout.CENTER);
