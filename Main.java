@@ -1,7 +1,8 @@
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 import javax.swing.*;
 
 public class Main {
@@ -15,6 +16,8 @@ public class Main {
         //frame.setPreferredSize(new Dimension(900,700));
         frame.setVisible(true);
         
+        JPanel border = new JPanel();
+
         JPanel formatPanel = new JPanel();
         formatPanel.setLayout(new BorderLayout(10,10));
 
@@ -27,8 +30,8 @@ public class Main {
         reset.addActionListener((ActionEvent e) -> {
             formatPanel.remove(((BorderLayout)formatPanel.getLayout()).getLayoutComponent(BorderLayout.CENTER));
             formatPanel.add(new GameScreen(), BorderLayout.CENTER);
-            frame.revalidate();
-            frame.repaint();
+            formatPanel.revalidate();
+            formatPanel.repaint();
             reset.setEnabled(false);
         });
         
@@ -37,7 +40,22 @@ public class Main {
         formatPanel.add(reset, BorderLayout.PAGE_END);
         formatPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 
-        frame.setContentPane(formatPanel);
+        border.addComponentListener(new ComponentAdapter(){
+            @Override
+            public void componentResized(ComponentEvent e){
+                int w = border.getWidth();
+                int h = border.getHeight();
+                double ratio = 3.0/4.0;
+                if (w / ratio < h) {
+                    formatPanel.setPreferredSize(new Dimension(w, (int) (w / ratio)));
+                } else {
+                    formatPanel.setPreferredSize(new Dimension((int) (h * ratio), h));
+                }
+                border.revalidate();
+            }
+        });
+        border.add(formatPanel);
+        frame.add(border);
 
         frame.pack();
     }
